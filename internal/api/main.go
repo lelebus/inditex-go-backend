@@ -19,6 +19,7 @@ func StartServer(port string, done chan os.Signal) {
 
 	// Define the REST endpoints
 	router.HandleFunc("/hello-world", HelloWorld).Methods("GET")
+	router.HandleFunc("/brand", GetBrand).Methods("GET")
 
 	fmt.Printf("\n🚀 REST API Server ready at http://localhost:%s/ \n\n", port)
 
