@@ -7,7 +7,13 @@ func ResetDB() {
 	if err := database.GetInstance().Exec("DELETE FROM brands").Error; err != nil {
 		panic(err)
 	}
+	if err := database.GetInstance().Exec("DELETE FROM prices").Error; err != nil {
+		panic(err)
+	}
 
 	// insert brands
 	ResetBrands()
+
+	// insert prices
+	ResetPrices()
 }

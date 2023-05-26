@@ -12,12 +12,6 @@ import (
 	"github.com/lelebus/inditext-go-backend/internal/domain"
 )
 
-////////////////////////
-//
-//  Queries
-//
-////////////////////////
-
 func TestGetBrand(t *testing.T) {
 
 	t.Run("should return 404 not found", func(t *testing.T) {
@@ -32,7 +26,7 @@ func TestGetBrand(t *testing.T) {
 	
 		// Check the response status code
 		if res.StatusCode != http.StatusNotFound {
-			t.Errorf("Expected status %v, but got %v", http.StatusNotFound, res.StatusCode)
+			t.Fatalf("Expected status %v, but got %v", http.StatusNotFound, res.StatusCode)
 		}
 	})	
 
@@ -45,6 +39,11 @@ func TestGetBrand(t *testing.T) {
 			panic(err)
 		}
 		defer res.Body.Close()
+
+		// Check the response status code
+		if res.StatusCode != http.StatusOK {
+			t.Fatalf("Expected status %v, but got %v", http.StatusOK, res.StatusCode)
+		}
 
 		var data domain.Brand
 		err = json.NewDecoder(res.Body).Decode(&data)

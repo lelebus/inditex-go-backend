@@ -10,16 +10,12 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func HelloWorld(w http.ResponseWriter, req *http.Request) {
-	fmt.Fprint(w, "Hello, World!")
-}
-
 func StartServer(port string, done chan os.Signal) {
 	router := mux.NewRouter()
 
 	// Define the REST endpoints
-	router.HandleFunc("/hello-world", HelloWorld).Methods("GET")
 	router.HandleFunc("/brand", GetBrand).Methods("GET")
+	router.HandleFunc("/pvp", GetPrice).Methods("GET")
 
 	fmt.Printf("\n🚀 REST API Server ready at http://localhost:%s/ \n\n", port)
 
